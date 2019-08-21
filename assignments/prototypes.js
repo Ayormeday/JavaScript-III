@@ -53,7 +53,7 @@
   } ;
   
   Person.prototype.greet = function (){
-    return `${this.name} ${this.age}`
+    return `Hello, I am ${this.name} and I am ${this.age} years old`
   };
   
   Person.prototype.eatEdible = function (food){
@@ -79,6 +79,27 @@
   // - Give cars the ability to be repaired.
   // - A repaired car can be driven again.
 
+  function Car (model_name, make){
+    this.model = model_name;
+    this.make = make;
+    this.odometer = 0;
+ 
+  };
+
+  Car.prototype.carDrive = function (distance){
+    return this.odometer += distance;
+  };
+
+  Car.prototype.carCrash = function (){
+    
+    return `i crashed at ${this.odometer} miles`
+  }
+
+  Car.prototype.carRepaired = function (){
+
+  }
+  const testNow = new Car("benz", "mayback");
+
   // TASK 3
 
   // - Build a Baby constructor that subclasses the Person built earlier.
@@ -86,11 +107,26 @@
   // - Babies should have the ability to play, which persons don't.
   // - By playing, a string is returned with some text of your choosing.
 
+  function Baby(name, age, toys){
+    Person.call(this, name, age);
+    this.toys = toys;
+  };
+
+  Baby.prototype = Object.create(Person.prototype);
+
+  Baby.prototype.play = function (){
+    return `I can play with my ${this.toys}`
+  }
+
+  var sonny = new Baby('Tom', 4, "toy cars");
+
+
   // TASK 4
 
   // Use your imagination and come up with constructors that allow to build objects
   // With amazing and original capabilities. Build 3 small ones, or a very
   // complicated one with lots of state. Surprise us!
+
 
 
 /*
